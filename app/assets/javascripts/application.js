@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//
+$('#search').keyup(function () {
+    /*
+  $.get($('#products_search').attr('action'), &crarr;
+    $('#products_search').serialize(), null, 'script');
+  return false;
+  */
+    console.log('test');
+});

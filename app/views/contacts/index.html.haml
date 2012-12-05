@@ -1,0 +1,7 @@
+%h1 Listing contacts
+
+%input#search
+
+= render :partial => 'contacts'
+
+= link_to 'New Contact', new_contact_path, remote: true

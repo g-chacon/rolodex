@@ -1,0 +1,12 @@
+%table#contact_table
+  %tr
+    %th First name
+    %th Last name
+    %th Phone
+    %th
+    %th
+    %th
+
+  - @contacts.each do |contact|
+    =render("contact", :contact=>contact)
+%br

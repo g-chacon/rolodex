@@ -17,9 +17,10 @@
       .container
         .content
           .row
-            .span12
+            .span6#contact_list
               = render 'layouts/messages'
               = yield
+            .span6#contact_form
           %footer
       / ! end of .container
     / ! end of #main
