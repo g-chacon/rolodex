@@ -2,23 +2,22 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.order('last_name')
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @contacts }
+    if (params.has_key?(:criteria))
+      if (params[:criteria]!="")
+        @contacts = Contact.where(["first_name LIKE ? OR last_name LIKE ?","%#{params[:criteria]}%","%#{params[:criteria]}%"]).order('last_name')
+      else
+        @contacts = Contact.order('last_name')
+      end
+    else
+      @contacts = Contact.order('last_name')
     end
-  end
-
-  def search
-    @contacts = Contact.where("first_name like '%".params[:search]."%'").order('last_name')
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @contacts }
       format.js
     end
   end
+
   # GET /contacts/1
   # GET /contacts/1.json
 
@@ -102,5 +101,14 @@ class ContactsController < ApplicationController
       format.json { head :no_content }
       format.js
     end
+  end
+
+  def delete_multiple
+    @contacts = Contact.find(params[:contacts_ids])
+    @contacts.each do |contact|
+      contact.destroy
+    end
+    flash[:notice] = "Updated products!"
+    redirect_to products_path
   end
 end

@@ -1,7 +1,12 @@
 %h1 Listing contacts
 
-%input#search
+=form_tag "/contacts", :method=>"GET", :class=> 'form-search', remote: true do
+  %label{:for => "criteria"} Search:
+  %input#search{:type => "text", :name => "criteria", :class => "text search-query"}
+  //%input{:type => "submit", :value => "Send", :class => "button"}
 
-= render :partial => 'contacts'
+=form_tag "/contacts/delete_multiple", :method=>"GET" do
+  %input{:type => "submit", :value => "Delete checked", :class => "button"}
+  = render :partial => 'contacts'
 
 = link_to 'New Contact', new_contact_path, remote: true

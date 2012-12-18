@@ -15,11 +15,16 @@
 //= require bootstrap
 //= require_tree .
 //
-$('#search').keyup(function () {
+$('document').ready(function () {
+    console.log('testload');
+$('input').keyup(function () {
     /*
   $.get($('#products_search').attr('action'), &crarr;
     $('#products_search').serialize(), null, 'script');
   return false;
   */
-    console.log('test');
+    var text=$(this).val();
+    console.log('value:'+text);
+    $(this).parent().submit();
+});
 });
